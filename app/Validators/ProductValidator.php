@@ -3,7 +3,6 @@
 namespace App\Validators;
 
 use App\Entities\Product;
-use App\Entities\Study;
 use App\Validators\Base\Validatable;
 use App\Validators\Base\ViolationBuilder;
 
@@ -16,6 +15,7 @@ class ProductValidator implements Validatable
     /**
      * @param Product $product
      * @param string $action
+     * @param array|null $validateFields
      */
     public function __construct(
         private Product $product,

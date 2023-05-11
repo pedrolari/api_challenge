@@ -6,22 +6,22 @@ use App\Http\Resources\ProductResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-interface ProductControllerInterface
+interface FeatureControllerInterface
 {
     /**
      * @OA\Post(
-     *      path="/product/new",
-     *      summary="Create product",
+     *      path="/feature/new",
+     *      summary="Create feature",
      *      @OA\PathItem (path="/api"),
      *      tags={"challenge"},
      *      security={ {"sanctum": {} }},
      *      @OA\RequestBody(
      *        required=true,
-     *        description="Create a new product",
+     *        description="Create a new feature",
      *        @OA\JsonContent(
-     *            required={"name","on_sale"},
-     *            @OA\Property(property="name", type="string", example="Producto"),
-     *            @OA\Property(property="on_sale", type="boolean", example="true"),
+     *            required={"featureName","description"},
+     *            @OA\Property(property="featureName", type="string", example="Producto"),
+     *            @OA\Property(property="description", type="string", example="Tipo de producto"),
      *        ),
      *      ),
      *      @OA\Response(
@@ -30,7 +30,7 @@ interface ProductControllerInterface
      *          @OA\JsonContent(
      *              @OA\Examples(
      *                  example="study",
-     *                  value={"message": "The route api/product/new could not be found."},
+     *                  value={"message": "The route api/feature/new could not be found."},
      *                  summary="Error message."
      *              ),
      *         )
@@ -38,13 +38,9 @@ interface ProductControllerInterface
      *      @OA\Response(
      *          response=201,
      *          description="Created",
-     *          @OA\JsonContent(ref="#/components/schemas/Product")
+     *          @OA\JsonContent(ref="#/components/schemas/Feature")
      *      ),
      * )
      */
-    public function createProduct(Request $request): JsonResponse;
-
-    public function getProduct(int $id, Request $request): ProductResource;
-
-    public function updateProduct(int $id, Request $request): ProductResource;
+    public function createFeature(Request $request): JsonResponse;
 }

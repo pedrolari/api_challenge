@@ -2,7 +2,6 @@
 
 namespace App\Services\Interfaces;
 
-use App\Entities\Product;
 use App\Entities\Product as ProductEntity;
 
 interface ProductServiceInterface
@@ -10,16 +9,16 @@ interface ProductServiceInterface
 
     /**
      * @param array $productFields
-     * @return Product
+     * @return ProductEntity
      */
-    public function createProduct(array $productFields): Product;
+    public function createProduct(array $productFields): ProductEntity;
 
     /**
      * @param int $id
      *
-     * @return Product
+     * @return ProductEntity
      */
-    public function getProduct(int $id): Product;
+    public function getProduct(int $id): ProductEntity;
 
     /**
      * @param ProductEntity $productEntity

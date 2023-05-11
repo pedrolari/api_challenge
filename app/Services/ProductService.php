@@ -31,11 +31,12 @@ class ProductService implements ProductServiceInterface
     {
         $productEntity = new ProductEntity();
         $productEntity->setName($productFields['name']);
-        $productEntity->setOnSale($productFields['on_sale']);
+        $productEntity->setOnSale($productFields['onSale']);
 
         $productValidator = new ProductValidator(
             $productEntity,
-            ProductValidator::ACTION_CREATE
+            ProductValidator::ACTION_CREATE,
+            null
         );
 
         $validator = new Validator($productValidator);

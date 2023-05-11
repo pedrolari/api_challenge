@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\FeatureController;
 use App\Http\Controllers\Api\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::post('/new', [ProductController::class, 'createProduct']);
         Route::get('/{id}', [ProductController::class, 'getProduct']);
         Route::patch('/{id}', [ProductController::class, 'updateProduct']);
+    });
+    Route::prefix('feature')->group(function () {
+        Route::post('/new', [FeatureController::class, 'createFeature']);
     });
 
 });
