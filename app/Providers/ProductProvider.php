@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 
+use App\Repositories\Interfaces\ProductFeatureRepositoryInterface;
 use App\Repositories\Interfaces\ProductRepositoryInterface;
+use App\Repositories\ProductFeatureRepository;
 use App\Repositories\ProductRepository;
 use App\Services\Interfaces\ProductServiceInterface;
 use App\Services\ProductService;
@@ -20,5 +22,6 @@ class ProductProvider extends ServiceProvider
     {
         $this->app->bind(ProductServiceInterface::class, ProductService::class);
         $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
+        $this->app->bind(ProductFeatureRepositoryInterface::class, ProductFeatureRepository::class);
     }
 }

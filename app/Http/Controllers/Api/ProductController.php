@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProductFeatureResource;
 use App\Http\Resources\ProductResource;
+use App\Services\Interfaces\FeatureServiceInterface;
 use App\Services\Interfaces\ProductServiceInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -18,9 +20,11 @@ class ProductController extends Controller implements Interfaces\ProductControll
 
     /**
      * @param ProductServiceInterface $productService
+     * @param FeatureServiceInterface $featureService
      */
     public function __construct(
         private ProductServiceInterface $productService,
+        private FeatureServiceInterface $featureService,
     ) {}
 
     /**
@@ -60,5 +64,19 @@ class ProductController extends Controller implements Interfaces\ProductControll
         return new ProductResource($this->productService->updateProduct($productEntity, $validateFields));
     }
 
+    /**
+     * @param int $product_id
+     * @param int $feature_id
+     * @return ProductFeatureResource
+     */
+    public function associateProduct(int $product_id, int $feature_id): ProductFeatureResource
+    {
+        $productEntity = $this->productService->getProduct($product_id);
+        $featureEntity = $this->featureService->getFeature($feature_id);
+
+        return new ProductFeatureResource(
+            $this->productService->associateProduct($productEntity, $featureEntity)
+        );
+    }
 
 }

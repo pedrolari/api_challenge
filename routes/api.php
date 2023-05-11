@@ -32,6 +32,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::post('/new', [ProductController::class, 'createProduct']);
         Route::get('/{id}', [ProductController::class, 'getProduct']);
         Route::patch('/{id}', [ProductController::class, 'updateProduct']);
+        Route::post('/associate/{product_id}/{feature_id}/', [ProductController::class, 'associateProduct']);
     });
     Route::prefix('feature')->group(function () {
         Route::post('/new', [FeatureController::class, 'createFeature']);

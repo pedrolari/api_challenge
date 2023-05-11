@@ -12,4 +12,10 @@ interface FeatureServiceInterface
      * @return FeatureEntity
      */
     public function createFeature(array $productFields): FeatureEntity;
+
+    /**
+     * @param int $id
+     * @return FeatureEntity
+     */
+    public function getFeature(int $id): FeatureEntity;
 }

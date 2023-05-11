@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Interfaces;
 
+use App\Http\Resources\ProductFeatureResource;
 use App\Http\Resources\ProductResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -47,4 +48,6 @@ interface ProductControllerInterface
     public function getProduct(int $id, Request $request): ProductResource;
 
     public function updateProduct(int $id, Request $request): ProductResource;
+
+    public function associateProduct(int $product_id, int $feature_id): ProductFeatureResource;
 }

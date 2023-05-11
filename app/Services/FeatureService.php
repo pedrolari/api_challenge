@@ -4,6 +4,7 @@ namespace App\Services;
 
 
 use App\Entities\Feature as FeatureEntity;
+use App\Exceptions\NotFoundException;
 use App\Exceptions\ValidationErrorException;
 use App\Repositories\Interfaces\FeatureRepositoryInterface;
 use App\Services\Interfaces\FeatureServiceInterface;
@@ -41,5 +42,20 @@ class FeatureService implements FeatureServiceInterface
         $validator->validate();
 
         return $this->featureRepository->save($featureEntity, true);
+    }
+
+
+    /**
+     * @param int $id
+     * @return FeatureEntity
+     * @throws NotFoundException
+     */
+    public function getFeature(int $id): FeatureEntity
+    {
+        if (!$feature = $this->featureRepository->findById($id)) {
+            throw new NotFoundException('Feature');
+        }
+
+        return $feature;
     }
 }

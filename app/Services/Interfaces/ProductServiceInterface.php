@@ -2,7 +2,9 @@
 
 namespace App\Services\Interfaces;
 
+use App\Entities\Feature as FeatureEntity;
 use App\Entities\Product as ProductEntity;
+use App\Entities\ProductFeature as ProductFeatureEntity;
 
 interface ProductServiceInterface
 {
@@ -26,4 +28,14 @@ interface ProductServiceInterface
      * @return ProductEntity
      */
     public function updateProduct(ProductEntity $productEntity, array $validateFields): ProductEntity;
+
+    /**
+     * @param ProductEntity $productEntity
+     * @param FeatureEntity $featureEntity
+     * @return ProductFeatureEntity
+     */
+    public function associateProduct(
+        ProductEntity $productEntity,
+        FeatureEntity $featureEntity
+    ): ProductFeatureEntity;
 }
