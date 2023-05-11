@@ -37,9 +37,8 @@ class ProductFeatureRepository implements ProductFeatureRepositoryInterface
         $productFeatureModel = new ProductFeature();
         $productFeatureModel->product_id = $productEntity->getId();
         $productFeatureModel->feature_id = $featureEntity->getId();
-
         $productFeatureModel->save();
 
-        return $productFeatureModel->refresh()->toEntity();
+        return $productFeatureModel->toEntity();
     }
 }

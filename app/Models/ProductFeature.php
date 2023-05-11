@@ -13,7 +13,7 @@ class ProductFeature extends Model
     use HasCompositePrimaryKeyTrait;
 
     protected $table      = 'product_features';
-    protected $primaryKey = 'product_id';
+//    protected $primaryKey = 'product_id';
     protected $keyType    = 'integer';
 
 

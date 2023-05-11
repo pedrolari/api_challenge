@@ -17,6 +17,7 @@ use App\Validators\Base\Validator;
 use App\Validators\ProductValidator;
 use Illuminate\Validation\ValidationException;
 use Psr\Log\NullLogger;
+use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
 
 
 class ProductService implements ProductServiceInterface
@@ -122,16 +123,15 @@ class ProductService implements ProductServiceInterface
             throw new NotFoundException('Feature');
         }
 
-        if (
-            !$productFeature = $this->productFeatureRepository->findById(
-                $productEntity->getId(),
-                $featureEntity->getId()
-            )
-        ) {
+        $productFeature = $this->productFeatureRepository->findById(
+            $productEntity->getId(),
+            $featureEntity->getId()
+        );
+
+        if (is_null($productFeature)) {
             return $this->productFeatureRepository->save($productEntity, $featureEntity, true);
+        } else {
+            throw new ConflictHttpException('ProductFeature exist');
         }
-
-
-        return $productFeature;
     }
 }

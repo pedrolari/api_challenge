@@ -8,6 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
@@ -63,6 +64,10 @@ class Handler extends ExceptionHandler
 
         if ($exception instanceof NotFoundHttpException) {
             return response()->json(['message' => $exception->getMessage() ?: 'Not Found'], Response::HTTP_NOT_FOUND);
+        }
+
+        if ($exception instanceof ConflictHttpException) {
+            return response()->json(['message' => $exception->getMessage() ?: 'exists'], Response::HTTP_CONFLICT);
         }
 
         if ($exception instanceof ValidationErrorException) {
