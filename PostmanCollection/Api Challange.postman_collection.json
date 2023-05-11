@@ -224,7 +224,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"El libro de petete\",\n    \"on_sale\": false\n}",
+					"raw": "{\n    \"name\": \"El libro de petete 6\",\n    \"onSale\": true\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -277,14 +277,14 @@
 					}
 				],
 				"url": {
-					"raw": "{{server}}/api/product/8",
+					"raw": "{{server}}/api/product/1",
 					"host": [
 						"{{server}}"
 					],
 					"path": [
 						"api",
 						"product",
-						"8"
+						"1"
 					]
 				}
 			},
@@ -339,6 +339,116 @@
 						"api",
 						"product",
 						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Feature",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "runTimestamp",
+						"value": "1646140769",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"featureName\": \"Pequeño\",\n    \"description\": \"Tamano del producto\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/api/feature/new",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"api",
+						"feature",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Associate Product Feature",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "runTimestamp",
+						"value": "1646140769",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"featureName\": \"grande\",\n    \"description\": \"Tamaño del producto\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/api/product/associate/1/2",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"api",
+						"product",
+						"associate",
+						"1",
+						"2"
 					]
 				}
 			},
