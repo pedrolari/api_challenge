@@ -7,7 +7,6 @@ use App\Entities\Feature as FeatureEntity;
 use App\Entities\Product as ProductEntity;
 use App\Entities\ProductFeature as ProductFeatureEntity;
 use App\Exceptions\NotFoundException;
-use App\Exceptions\UnexpectedException;
 use App\Exceptions\ValidationErrorException;
 use App\Repositories\Interfaces\FeatureRepositoryInterface;
 use App\Repositories\Interfaces\ProductFeatureRepositoryInterface;
@@ -15,8 +14,6 @@ use App\Repositories\Interfaces\ProductRepositoryInterface;
 use App\Services\Interfaces\ProductServiceInterface;
 use App\Validators\Base\Validator;
 use App\Validators\ProductValidator;
-use Illuminate\Validation\ValidationException;
-use Psr\Log\NullLogger;
 use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
 
 
@@ -103,12 +100,8 @@ class ProductService implements ProductServiceInterface
     /**
      * @param ProductEntity $productEntity
      * @param FeatureEntity $featureEntity
-     * @param array $validateFields
-     * @return \App\Entities\ProductFeature
+     * @return ProductFeatureEntity
      * @throws NotFoundException
-     * @throws ValidationErrorException
-     * @throws \ReflectionException
-     * @throws UnexpectedException
      */
     public function associateProduct(
         ProductEntity $productEntity,
